@@ -95,11 +95,4 @@ project_root/
 ## 📌 Poznámky
 
 - Seznam HGT a VGT genů je definován přímo ve skriptu `make_comparison_matrices.py` (proměnné `hgt_genes` a `vgt_genes`). Lze upravit podle potřeby.
-- GUI aplikace (`dotmap_viewer.py`) je optimalizována pro větší obrazovky a podporuje současné zobrazení více genů.
 - Skripty byly testovány na datech získaných nástroji Prokka a UBCG.
-
----
-
-## 📄 Licence
-
-MIT License
