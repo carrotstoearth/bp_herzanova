@@ -57,7 +57,7 @@ Spustí interaktivní GUI aplikaci pro výběr HGT a VGT genů a jejich vizualiz
 ### Parametry:
 - `--hgt_folder`: složka obsahující CSV matice pro HGT geny.
 - `--vgt_folder`: složka obsahující CSV matice pro VGT geny.
-- `--phylum_file`: (volitelné) tabulka `.xlsx` s informací o fylu pro každý genom (sloupce „Strain“, „GTDB-Tk“).
+- `--phylum_file`: (volitelné) tabulka `.xlsx` s informací o fylu pro každý genom. Soubor musí obsahovat sloupec s názvem „Strain“, obsahujícím název genomu, a sloupec s názvem „GTDB-Tk“, obsahujícím fylogenetické zařazení genomu, přičemž kmen daného organismu je uveden za přeponou „__p“.
 
 ---
 
