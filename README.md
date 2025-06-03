@@ -6,7 +6,7 @@ Tato pipeline slouží k analýze a vizualizaci výskytu genů indikujících ho
 - vytvořit porovnávací matice přítomnosti genů,
 - vizualizovat sdílení genů ve formě statické i interaktivní dotmapy.
 
-## 📁 Struktura
+## Struktura
 
 - `make_comparison_matrices.py` — vytvoří přítomnostní a porovnávací matice genů podle fylogenetického stromu.
 - `generate_dotmaps.py` — vygeneruje kombinovanou statickou dotmapu všech zadaných genů.
@@ -14,7 +14,7 @@ Tato pipeline slouží k analýze a vizualizaci výskytu genů indikujících ho
 
 ---
 
-## 🧪 1. Generování porovnávacích matic
+## 1. Generování porovnávacích matic
 
 ```bash
 python make_comparison_matrices.py   --input_folder path/to/genome_folders   --output_folder path/to/output_dir   --tree_file path/to/tree_file.newick
@@ -31,7 +31,7 @@ python make_comparison_matrices.py   --input_folder path/to/genome_folders   --o
 
 ---
 
-## 🖼️ 2. Generování statické dotmapy
+## 2. Generování statické dotmapy
 
 ```bash
 python generate_dotmaps.py   --hgt_folder path/to/output_dir/hgt   --vgt_folder path/to/output_dir/vgt
@@ -45,7 +45,7 @@ Skript vykreslí kombinovanou dotmapu pro všechny geny ve složkách `hgt/` a `
 
 ---
 
-## 🧭 3. Interaktivní vizualizace
+## 3. Interaktivní vizualizace
 
 ```bash
 python dotmap_viewer.py   --hgt_folder path/to/output_dir/hgt   --vgt_folder path/to/output_dir/vgt   --phylum_file path/to/phylum_metadata.xlsx
@@ -61,7 +61,7 @@ Spustí interaktivní GUI aplikaci pro výběr HGT a VGT genů a jejich vizualiz
 
 ---
 
-## 🔧 Závislosti
+## Závislosti
 
 Instalace požadovaných balíčků přes `pip`:
 
@@ -76,7 +76,7 @@ pip install biopython pandas numpy matplotlib PyQt5 plotly openpyxl
 
 ---
 
-## 📂 Doporučená struktura vstupních dat
+## Doporučená struktura vstupních dat
 
 ```
 project_root/
@@ -92,7 +92,7 @@ project_root/
 
 ---
 
-## 📌 Poznámky
+## Poznámky
 
 - Seznam HGT a VGT genů je definován přímo ve skriptu `make_comparison_matrices.py` (proměnné `hgt_genes` a `vgt_genes`). Lze upravit podle potřeby.
 - Skripty byly testovány na datech získaných nástroji Prokka a UBCG.
