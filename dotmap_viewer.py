@@ -38,7 +38,7 @@ class DotmapViewer(QWidget):
         if phylum_file:
             try:
                 phylum_df = pd.read_excel(phylum_file, header=1)
-                # Extract phylum name using regex from field
+                # Extract phylum name using regex
                 phylum_df["Phylum"] = phylum_df["GTDB-Tk"].str.extract(r"p__([^;]+)")
                 phylum_df["Phylum"] = phylum_df["Phylum"].str.replace("_+", "_", regex=True).str.strip("_")
                 phylum_df["Phylum"] = phylum_df["Phylum"].replace(regex=r"^Firmicutes.*", value="Firmicutes")
@@ -46,7 +46,7 @@ class DotmapViewer(QWidget):
                 # Create mapping from strain to phylum
                 self.strain_to_phylum = dict(zip(phylum_df["Strain"], phylum_df["Phylum"]))
 
-                # Assign colors to each unique phylum
+                # Assign colours to each unique phylum
                 unique_phyla = sorted(set(self.strain_to_phylum.values()))
                 palette = px.colors.qualitative.Set3
                 self.phylum_colors = dict(zip(unique_phyla, palette[:len(unique_phyla)]))
@@ -154,7 +154,7 @@ class DotmapViewer(QWidget):
         vgt_colors = px.colors.qualitative.Dark24
         hgt_index = vgt_index = 0
 
-        # === Sběr všech sdílených genů pro tooltipy ===
+        # Get all genes for tooltip
         shared_gene_map = {}
 
         for gene, path, _ in selected_genes:
@@ -222,18 +222,20 @@ class DotmapViewer(QWidget):
                 for i, color in enumerate(self.phylum_colors.values())
             ]
 
+            bar_thickness = max(2, int(len(x_labels) * 0.03))  # 3% of genome count, min 2
+
             # Horizontal and vertical color bars
             fig.add_trace(go.Heatmap(
-                z=[x_colors] * 6,
+                z=[x_colors] * bar_thickness,
                 x=list(range(len(x_labels))),
-                y=[-i for i in range(1, 7)],
+                y=[-i for i in range(1, bar_thickness + 1)],
                 showscale=False,
                 colorscale=colorscale,
                 hoverinfo='skip'
             ))
             fig.add_trace(go.Heatmap(
-                z=np.column_stack([y_colors] * 6).tolist(),
-                x=[-i for i in range(1, 7)],
+                z=np.column_stack([y_colors] * bar_thickness).tolist(),
+                x=[-i for i in range(1, bar_thickness + 1)],
                 y=list(range(len(y_labels))),
                 showscale=False,
                 colorscale=colorscale,
