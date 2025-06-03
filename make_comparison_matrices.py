@@ -124,7 +124,7 @@ def main(input_folder, output_folder, tree_file):
     """
     Main function: Copies files, processes HGT and VGT genes, outputs matrices.
     """
-    gff_flat_folder = os.path.join(output_folder, "gff_ffn")
+    gff_flat_folder = os.path.join(output_folder, "gff")
     copy_gff_files(input_folder, gff_flat_folder)
 
     # Define and process horizontally transferred genes
