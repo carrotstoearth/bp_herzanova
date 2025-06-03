@@ -154,6 +154,20 @@ class DotmapViewer(QWidget):
         vgt_colors = px.colors.qualitative.Dark24
         hgt_index = vgt_index = 0
 
+        # === Sběr všech sdílených genů pro tooltipy ===
+        shared_gene_map = {}
+
+        for gene, path, _ in selected_genes:
+            df = pd.read_csv(path, index_col=0)
+            binary_df = (df > 0).astype(int)
+            y_vals, x_vals = binary_df.values.nonzero()
+
+            for i in range(len(x_vals)):
+                key = (x_vals[i], y_vals[i])
+                if key not in shared_gene_map:
+                    shared_gene_map[key] = []
+                shared_gene_map[key].append(gene)
+
         # Loop over selected genes and create a scatter trace for each
         for gene, path, category in selected_genes:
             df = pd.read_csv(path, index_col=0)
@@ -181,7 +195,7 @@ class DotmapViewer(QWidget):
                 showlegend=True,
                 text=[  # Tooltip text
                     (
-                        f"<b>Gene:</b> {gene}"
+                        f"<b>Genes:</b> {', '.join(shared_gene_map.get((x[j], y[j]), [gene]))}"
                         f"<br><b>X:</b> {x_labels[x[j]]}" +
                         (f" ({self.strain_to_phylum[x_labels[x[j]]]}" if self.has_phylum_info and x_labels[x[j]] in self.strain_to_phylum else "") +
                         (")" if self.has_phylum_info and x_labels[x[j]] in self.strain_to_phylum else "") +
